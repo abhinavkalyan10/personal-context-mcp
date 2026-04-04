@@ -4,6 +4,10 @@ A Markdown-first MCP for Claude Desktop that makes AI memory portable, structure
 
 `personal-context-mcp` helps you stop re-explaining yourself to AI across sessions, projects, and platforms.
 
+## In Action
+
+![Personal Context MCP in Claude Desktop](./assets/personal-context-mcp.gif)
+
 Instead of relying on opaque in-app memory, it stores context in files you control and exposes that context to Claude through an MCP extension.
 
 ## The Problem
