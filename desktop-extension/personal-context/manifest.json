@@ -1,0 +1,28 @@
+{
+  "manifest_version": "0.1",
+  "name": "personal-context",
+  "version": "0.1.0",
+  "description": "File-backed personal context and working memory for Claude Desktop.",
+  "author": {
+    "name": "Abhinav Kalyan"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "PERSONAL_CONTEXT_ROOT": "${user_config.context_root}"
+      }
+    }
+  },
+  "user_config": {
+    "context_root": {
+      "type": "directory",
+      "title": "Personal Context Folder",
+      "description": "Choose the personal-context-portfolio folder that contains core, dynamic, and inbox.",
+      "required": true
+    }
+  }
+}

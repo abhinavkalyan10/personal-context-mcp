@@ -1,0 +1,4 @@
+.DS_Store
+node_modules/
+desktop-extension/personal-context/node_modules/
+my-personal-context-portfolio/

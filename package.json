@@ -1,0 +1,15 @@
+{
+  "name": "personal-context-mcp",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "mcp:context": "node ./mcp/personal-context-server.mjs",
+    "install:extension": "npm install --prefix ./desktop-extension/personal-context"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.3.6"
+  }
+}
