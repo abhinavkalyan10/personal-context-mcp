@@ -1,6 +1,6 @@
 # Personal Context MCP
 
-A portable, Markdown-first memory system for Claude Desktop.
+A Markdown-first MCP for Claude Desktop that makes AI memory portable, structured, and user-owned.
 
 `personal-context-mcp` helps you stop re-explaining yourself to AI across sessions, projects, and platforms.
 
@@ -78,6 +78,13 @@ Once installed, Claude can:
 ## Install
 
 See [QUICKSTART.md](./QUICKSTART.md).
+
+Clone the repo:
+
+```bash
+git clone https://github.com/abhinavkalyan10/personal-context-mcp.git
+cd personal-context-mcp
+```
 
 ## Best Use Cases
 

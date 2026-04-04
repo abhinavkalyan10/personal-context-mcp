@@ -5,7 +5,7 @@ This is the fastest path to getting `personal-context-mcp` running in Claude Des
 ## 1. Clone the repo
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/abhinavkalyan10/personal-context-mcp.git
 cd personal-context-mcp
 ```
 
@@ -20,7 +20,7 @@ npm install
 Install the Claude Desktop extension dependencies:
 
 ```bash
-npm install --prefix ./desktop-extension/personal-context
+npm run install:extension
 ```
 
 ## 3. Create your own portfolio
@@ -48,17 +48,8 @@ In Claude Desktop:
 
 1. Open `Settings -> Extensions`
 2. Click `Install Unpacked Extension`
-3. Select:
-
-```text
-<repo-folder>/desktop-extension/personal-context
-```
-
-4. When prompted for `Personal Context Folder`, choose:
-
-```text
-<repo-folder>/my-personal-context-portfolio
-```
+3. Select the `desktop-extension/personal-context` folder inside the repo you just cloned.
+4. When prompted for `Personal Context Folder`, choose `my-personal-context-portfolio` inside that same repo.
 
 5. Enable the extension
 6. Start a fresh chat
