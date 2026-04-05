@@ -10,6 +10,24 @@ A Markdown-first MCP for Claude Desktop that makes AI memory portable, structure
 
 Instead of relying on opaque in-app memory, it stores context in files you control and exposes that context to Claude through an MCP extension.
 
+## Who This Is For
+
+This is most useful if you:
+
+- use Claude heavily
+- switch between multiple AI workflows
+- want continuity across sessions and projects
+- want portable memory instead of product-specific memory lock-in
+
+## What Makes This Different
+
+This project is intentionally opinionated:
+
+- Markdown-first, so the memory layer stays portable and inspectable
+- `core / dynamic / inbox`, so durable truth, working memory, and tentative notes do not get mixed together
+- human-reviewable, so the important context is visible and editable in plain files
+- portable across platforms, so your context is not trapped inside one AI product
+
 ## The Problem
 
 As you use more AI tools, you end up paying the same tax over and over:
