@@ -41,6 +41,11 @@ const APPEND_TARGET_SECTIONS = new Map([
   ["core-update-proposals", "## Proposed Updates"],
 ]);
 
+const CONTEXT_ROOT_FOLDER_NAMES = [
+  "personal-context-portfolio",
+  "my-personal-context-portfolio",
+];
+
 const DEFAULT_FILE_CONTENTS = {
   dynamic: {
     "current-priorities.md": `# Current Priorities
@@ -176,13 +181,22 @@ function readExtensionConfiguredContextRoot() {
 }
 
 function discoverLocalContextRoot() {
-  const candidates = [
-    path.resolve(serverDir, "..", "personal-context-portfolio"),
-    path.resolve(serverDir, "..", "..", "personal-context-portfolio"),
-    path.resolve(process.cwd(), "personal-context-portfolio"),
+  const candidateBases = [
+    path.resolve(serverDir, ".."),
+    path.resolve(serverDir, "..", ".."),
+    path.resolve(process.cwd()),
   ];
 
-  return candidates.find((candidate) => fs.existsSync(candidate)) ?? null;
+  for (const baseDir of candidateBases) {
+    for (const folderName of CONTEXT_ROOT_FOLDER_NAMES) {
+      const candidate = path.resolve(baseDir, folderName);
+      if (fs.existsSync(candidate)) {
+        return candidate;
+      }
+    }
+  }
+
+  return null;
 }
 
 function determineContextRoot() {
@@ -315,39 +329,100 @@ function removeDefaultPlaceholder(existingText, placeholders) {
   return updated;
 }
 
-function replaceMarkdownSection(markdown, heading, replacementBody) {
-  const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const sectionPattern = new RegExp(
-    `(${escapedHeading}\\n)([\\s\\S]*?)(?=\\n## |\\n# |$)`,
-    "m",
-  );
+function trimBlankLines(lines) {
+  let start = 0;
+  let end = lines.length;
 
-  if (!sectionPattern.test(markdown)) {
+  while (start < end && lines[start].trim().length === 0) {
+    start += 1;
+  }
+
+  while (end > start && lines[end - 1].trim().length === 0) {
+    end -= 1;
+  }
+
+  return lines.slice(start, end);
+}
+
+function findSectionBounds(markdown, heading) {
+  const lines = markdown.split(/\r?\n/);
+  const headingIndex = lines.findIndex((line) => line === heading);
+
+  if (headingIndex === -1) {
     throw new Error(`Section not found: ${heading}`);
   }
 
+  const headingMatch = heading.match(/^(#+)\s/);
+  if (!headingMatch) {
+    throw new Error(`Invalid heading: ${heading}`);
+  }
+
+  const headingLevel = headingMatch[1].length;
+  let sectionEndIndex = lines.length;
+
+  for (let i = headingIndex + 1; i < lines.length; i += 1) {
+    const match = lines[i].match(/^(#+)\s/);
+    if (match && match[1].length <= headingLevel) {
+      sectionEndIndex = i;
+      break;
+    }
+  }
+
+  return {
+    lines,
+    headingIndex,
+    sectionEndIndex,
+    lineEnding: markdown.includes("\r\n") ? "\r\n" : "\n",
+    hasTrailingNewline: markdown.endsWith("\n"),
+  };
+}
+
+function rebuildMarkdown(lines, lineEnding, hasTrailingNewline) {
+  const rebuilt = lines.join(lineEnding);
+  return hasTrailingNewline ? `${rebuilt}${lineEnding}` : rebuilt;
+}
+
+function replaceMarkdownSection(markdown, heading, replacementBody) {
   const normalizedBody = replacementBody.trim().length > 0 ? replacementBody.trim() : "- None";
-  return markdown.replace(sectionPattern, `$1${normalizedBody}\n`);
+  const replacementLines = trimBlankLines(normalizedBody.split(/\r?\n/));
+  const { lines, headingIndex, sectionEndIndex, lineEnding, hasTrailingNewline } =
+    findSectionBounds(markdown, heading);
+
+  const nextLines = [
+    ...lines.slice(0, headingIndex + 1),
+    ...replacementLines,
+  ];
+
+  if (sectionEndIndex < lines.length && nextLines[nextLines.length - 1] !== "") {
+    nextLines.push("");
+  }
+
+  nextLines.push(...lines.slice(sectionEndIndex));
+
+  return rebuildMarkdown(nextLines, lineEnding, hasTrailingNewline);
 }
 
 function insertIntoSection(markdown, heading, block) {
-  const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const sectionPattern = new RegExp(
-    `(${escapedHeading}\\n)([\\s\\S]*?)(?=\\n## |\\n# |$)`,
-    "m",
-  );
+  const blockLines = trimBlankLines(block.split(/\r?\n/));
+  const { lines, headingIndex, sectionEndIndex, lineEnding, hasTrailingNewline } =
+    findSectionBounds(markdown, heading);
+  const existingBodyLines = trimBlankLines(lines.slice(headingIndex + 1, sectionEndIndex));
+  const nextBodyLines =
+    existingBodyLines.length > 0
+      ? [...existingBodyLines, "", ...blockLines]
+      : blockLines;
+  const nextLines = [
+    ...lines.slice(0, headingIndex + 1),
+    ...nextBodyLines,
+  ];
 
-  if (!sectionPattern.test(markdown)) {
-    throw new Error(`Section not found: ${heading}`);
+  if (sectionEndIndex < lines.length && nextLines[nextLines.length - 1] !== "") {
+    nextLines.push("");
   }
 
-  return markdown.replace(sectionPattern, (_match, prefix, body) => {
-    const trimmedBody = body.trim();
-    if (trimmedBody.length > 0) {
-      return `${prefix}${trimmedBody}\n\n${block}\n`;
-    }
-    return `${prefix}\n${block}\n`;
-  });
+  nextLines.push(...lines.slice(sectionEndIndex));
+
+  return rebuildMarkdown(nextLines, lineEnding, hasTrailingNewline);
 }
 
 function overwriteDynamicSection(file, sectionHeading, content) {
@@ -392,7 +467,8 @@ function appendMemoryEntry(args) {
   ]);
 
   const timestamp = new Date().toISOString();
-  const lines = [`## ${timestamp} - ${title}`, `- Summary: ${summary}`];
+  // Keep entries nested under the owning section without terminating it.
+  const lines = [`### ${timestamp} - ${title}`, `- Summary: ${summary}`];
 
   for (const bullet of bullets) {
     lines.push(`- ${bullet}`);
