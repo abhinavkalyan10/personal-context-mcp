@@ -221,7 +221,7 @@ const contextRoot = determineContextRoot();
 
 if (!fs.existsSync(contextRoot)) {
   throw new Error(
-    `Personal context root does not exist: ${contextRoot}. Choose the personal-context-portfolio folder in the extension settings.`,
+    `Personal context root does not exist: ${contextRoot}. Choose the personal context folder in the extension settings.`,
   );
 }
 

@@ -21,7 +21,7 @@
     "context_root": {
       "type": "directory",
       "title": "Personal Context Folder",
-      "description": "Choose the personal-context-portfolio folder that contains core, dynamic, and inbox.",
+      "description": "Choose the personal context folder that contains core, dynamic, and inbox.",
       "required": true
     }
   }
