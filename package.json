@@ -5,8 +5,11 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "test": "node --test",
     "mcp:context": "node ./mcp/personal-context-server.mjs",
-    "install:extension": "npm install --prefix ./desktop-extension/personal-context"
+    "install:extension": "npm install --prefix ./desktop-extension/personal-context",
+    "prepare:extension": "node ./scripts/prepare-extension.mjs",
+    "sync:extension": "node ./scripts/prepare-extension.mjs --sync"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

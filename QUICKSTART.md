@@ -23,6 +23,12 @@ Install the Claude Desktop extension dependencies:
 npm run install:extension
 ```
 
+Prepare a self-contained unpacked extension bundle:
+
+```bash
+npm run prepare:extension
+```
+
 ## 3. Create your own portfolio
 
 Copy the starter template:
@@ -48,11 +54,27 @@ In Claude Desktop:
 
 1. Open `Settings -> Extensions`
 2. Click `Install Unpacked Extension`
-3. Select the `desktop-extension/personal-context` folder inside the repo you just cloned.
+3. Select the `.build/claude-extension/personal-context` folder inside the repo you just cloned.
 4. When prompted for `Personal Context Folder`, choose `my-personal-context-portfolio` inside that same repo.
 
 5. Enable the extension
 6. Start a fresh chat
+
+## Refresh an existing unpacked install
+
+If you already have an installed unpacked extension and want to refresh that runtime from the repo, reuse the same prepared bundle and sync it into Claude's installed extension directory:
+
+```bash
+PERSONAL_CONTEXT_EXTENSION_TARGET="/absolute/path/to/local.unpacked.your-extension" npm run sync:extension
+```
+
+You can also pass the target explicitly:
+
+```bash
+npm run sync:extension -- --target "/absolute/path/to/local.unpacked.your-extension"
+```
+
+The sync workflow keeps machine-specific paths out of the repo, reuses the shared server runtime, and leaves your chosen personal context folder untouched.
 
 ## 5. Validate
 
