@@ -2,7 +2,7 @@
   "manifest_version": "0.1",
   "name": "personal-context",
   "version": "0.1.0",
-  "description": "File-backed personal context and working memory for Claude Desktop.",
+  "description": "Claude Desktop extension for trusted Markdown personal context: read and search core, dynamic, and inbox memory; build trust-aware task bundles; capture low-trust notes; and promote reviewed notes without editing core files directly.",
   "author": {
     "name": "Abhinav Kalyan"
   },

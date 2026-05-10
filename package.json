@@ -4,6 +4,18 @@
   "private": false,
   "license": "MIT",
   "type": "module",
+  "files": [
+    "assets",
+    "desktop-extension/personal-context/manifest.json",
+    "desktop-extension/personal-context/package-lock.json",
+    "desktop-extension/personal-context/package.json",
+    "desktop-extension/personal-context/server",
+    "lib",
+    "mcp",
+    "scripts",
+    "starter-personal-context-portfolio",
+    "QUICKSTART.md"
+  ],
   "scripts": {
     "test": "node --test",
     "mcp:context": "node ./mcp/personal-context-server.mjs",

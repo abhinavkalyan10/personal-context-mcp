@@ -83,6 +83,12 @@ Use these prompts:
 - `Use the personal-context extension to list available memory files.`
 - `Use the personal-context extension to read core/identity.md and summarize who I am.`
 - `Use the personal-context extension to read core/communication-style.md and explain how you should write for me.`
+- `Use the personal-context extension to search_memory for "current priorities" and show the strongest matches.`
+- `Use the personal-context extension to run wake_up_context for the task "What should I focus on this week?" and show the ranked bundle.`
+- `Use the personal-context extension to manual_ingest this pasted rough note as a dry run, then show the entry preview: "A customer interview repeated the same setup concern, but I have not turned it into a reusable pattern yet."`
+- `Use the personal-context extension to promote_raw_note as a dry run from inbox/raw-notes.md into dynamic/recent-learnings.md, keeping the source-note trail visible.`
+- `Use the personal-context extension to mark_raw_note_status as a dry run for one inbox/raw-notes.md entry, marking it reviewed or promoted without deleting it.`
+- `Use the personal-context extension to link_raw_note_to_proposal as a dry run so one inbox/raw-notes.md note clearly supports an existing inbox/core-update-proposals.md entry without creating a duplicate proposal.`
 
 ## 6. Bootstrap
 
@@ -118,6 +124,11 @@ Be conservative:
 The best operating model is:
 
 - keep `core/` stable
+- use `manual_ingest` for pasted notes, transcript excerpts, or rough summaries so they land in `inbox/raw-notes.md` with visible provenance first
+- use `promote_raw_note` when one reviewed raw note has earned promotion into `dynamic/recent-learnings.md` or `inbox/core-update-proposals.md`
+- use `mark_raw_note_status` after review or promotion so source notes remain auditable but no longer look unresolved
+- use `link_raw_note_to_proposal` when a reviewed raw note supports an existing `inbox/core-update-proposals.md` entry and should point there instead of spawning a duplicate proposal
 - let Claude update `dynamic/` when something durable is learned
+- use `maintain_dynamic_item` when one exact bullet or dated entry in `dynamic/` should be replaced or removed without rewriting the whole section
 - use `inbox/` for rough notes and uncertain ideas
 - review core update proposals manually

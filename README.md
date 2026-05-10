@@ -26,7 +26,7 @@ This project is intentionally opinionated:
 - Markdown-first, so the memory layer stays portable and inspectable
 - `core / dynamic / inbox`, so durable truth, working memory, and tentative notes do not get mixed together
 - human-reviewable, so the important context is visible and editable in plain files
-- portable across platforms, so your context is not trapped inside one AI product
+- portable as plain files, so your context is not trapped inside one AI product
 
 ## The Problem
 
@@ -92,7 +92,14 @@ Once installed, Claude can:
 
 - list available memory files
 - read a specific file
+- search across memory files with ranked snippets and transparent relevance rationale
+- build a small trust-aware wake-up bundle for a task before starting work
+- capture pasted notes, transcript excerpts, or rough summaries into low-trust inbox memory with visible provenance
+- promote reviewed raw notes into reusable learnings or protected core-update proposals while keeping a visible source-note trail
+- mark raw notes as reviewed or promoted in place so inbox capture stays auditable instead of looking perpetually unresolved
+- link reviewed raw notes to an existing core-update proposal without creating a duplicate proposal entry
 - append durable learnings to working memory
+- replace or remove exact bullets and dated entries in dynamic memory without guessing
 - replace selected sections in dynamic files
 - bootstrap dynamic memory
 - propose updates to protected core files without editing them directly
