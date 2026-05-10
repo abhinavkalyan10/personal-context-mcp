@@ -10,6 +10,8 @@ cp -R starter-personal-context-portfolio my-personal-context-portfolio
 
 Then point the Claude Desktop extension at `my-personal-context-portfolio/`.
 
+Your copied portfolio will contain private context once you fill it in. Keep it out of public Git history. The default `my-personal-context-portfolio/` folder name is ignored by the parent repo.
+
 ## Structure
 
 - `core/`

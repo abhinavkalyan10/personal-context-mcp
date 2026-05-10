@@ -37,6 +37,8 @@ Copy the starter template:
 cp -R starter-personal-context-portfolio my-personal-context-portfolio
 ```
 
+`my-personal-context-portfolio/` is ignored by this repo so your filled personal context does not get committed by accident. If you use a different folder name, keep it outside Git or add it to your own `.gitignore` before filling it in.
+
 Then fill in your own core files:
 
 - `my-personal-context-portfolio/core/identity.md`
@@ -89,6 +91,8 @@ Use these prompts:
 - `Use the personal-context extension to promote_raw_note as a dry run from inbox/raw-notes.md into dynamic/recent-learnings.md, keeping the source-note trail visible.`
 - `Use the personal-context extension to mark_raw_note_status as a dry run for one inbox/raw-notes.md entry, marking it reviewed or promoted without deleting it.`
 - `Use the personal-context extension to link_raw_note_to_proposal as a dry run so one inbox/raw-notes.md note clearly supports an existing inbox/core-update-proposals.md entry without creating a duplicate proposal.`
+
+These prompts exercise the `v0.2.0` surface: status/read tools, ranked search, wake-up context bundles, low-trust manual ingestion, and review/promotion flows.
 
 ## 6. Bootstrap
 

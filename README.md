@@ -28,6 +28,26 @@ This project is intentionally opinionated:
 - human-reviewable, so the important context is visible and editable in plain files
 - portable as plain files, so your context is not trapped inside one AI product
 
+## Privacy Boundary
+
+The starter portfolio in this repo is intentionally blank and safe to copy.
+Your filled personal context portfolio is private data.
+
+Do not commit your filled portfolio to a public repo. The default quickstart name, `my-personal-context-portfolio/`, is ignored by this repo, but if you choose another name, keep it outside Git or add it to your own `.gitignore` before filling it in.
+
+## What v0.2.0 Adds
+
+`v0.2.0` turns the project from a basic Markdown memory bridge into a fuller personal-context workflow:
+
+- **Ranked search:** `search_memory` finds relevant files and sections with transparent ranking reasons.
+- **Wake-up bundles:** `wake_up_context` builds a small trust-aware bundle before a task starts, so Claude can read the right context first.
+- **Durable context wrappers:** `writing_style_context`, `product_positioning_context`, and `outbound_framing_context` give common high-value prompts explicit entry points.
+- **Manual ingestion:** `manual_ingest` captures pasted notes, transcript excerpts, and rough summaries into low-trust inbox memory with visible provenance.
+- **Review and promotion:** `promote_raw_note`, `mark_raw_note_status`, and `link_raw_note_to_proposal` let rough notes move toward reusable memory without erasing their trail.
+- **Safer dynamic maintenance:** dynamic files can be appended to, bootstrapped, or updated through exact section/item operations instead of broad rewrites.
+
+The important upgrade is not "more memory." It is a more inspectable path from rough context to useful context, while keeping durable truth protected.
+
 ## The Problem
 
 As you use more AI tools, you end up paying the same tax over and over:
