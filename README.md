@@ -2,7 +2,7 @@
 
 A Markdown-first MCP for Claude Desktop that makes AI memory portable, structured, and user-owned.
 
-`personal-context-mcp` helps you stop re-explaining yourself to AI across sessions, projects, and platforms.
+`personal-context-mcp` helps Claude work with your own context without trapping that context inside one product's memory system.
 
 ## In Action
 
@@ -10,14 +10,15 @@ A Markdown-first MCP for Claude Desktop that makes AI memory portable, structure
 
 Instead of relying on opaque in-app memory, it stores context in files you control and exposes that context to Claude through an MCP extension.
 
-## Who This Is For
+## Why Use It
 
 This is most useful if you:
 
 - use Claude heavily
 - switch between multiple AI workflows
 - want continuity across sessions and projects
-- want portable memory instead of product-specific memory lock-in
+- care about user-owned memory instead of product-owned memory lock-in
+- want important context to stay reviewable in plain files
 
 ## What Makes This Different
 
@@ -25,19 +26,15 @@ This project is intentionally opinionated:
 
 - Markdown-first, so the memory layer stays portable and inspectable
 - `core / dynamic / inbox`, so durable truth, working memory, and tentative notes do not get mixed together
-- human-reviewable, so the important context is visible and editable in plain files
-- portable as plain files, so your context is not trapped inside one AI product
+- human-reviewable, so important context is visible and editable in plain files
+- trust-aware, so rough notes can be captured without pretending they are durable truth
+- local by default, so your filled portfolio stays under your control
 
-## Privacy Boundary
+The point is not "more memory." It is a more inspectable path from rough context to useful context, while keeping durable truth protected.
 
-The starter portfolio in this repo is intentionally blank and safe to copy.
-Your filled personal context portfolio is private data.
+## V2 Surface
 
-Do not commit your filled portfolio to a public repo. The default quickstart name, `my-personal-context-portfolio/`, is ignored by this repo, but if you choose another name, keep it outside Git or add it to your own `.gitignore` before filling it in.
-
-## What v0.2.0 Adds
-
-`v0.2.0` turns the project from a basic Markdown memory bridge into a fuller personal-context workflow:
+The current V2 surface turns the project from a basic Markdown memory bridge into a fuller personal-context workflow:
 
 - **Ranked search:** `search_memory` finds relevant files and sections with transparent ranking reasons.
 - **Wake-up bundles:** `wake_up_context` builds a small trust-aware bundle before a task starts, so Claude can read the right context first.
@@ -46,21 +43,7 @@ Do not commit your filled portfolio to a public repo. The default quickstart nam
 - **Review and promotion:** `promote_raw_note`, `mark_raw_note_status`, and `link_raw_note_to_proposal` let rough notes move toward reusable memory without erasing their trail.
 - **Safer dynamic maintenance:** dynamic files can be appended to, bootstrapped, or updated through exact section/item operations instead of broad rewrites.
 
-The important upgrade is not "more memory." It is a more inspectable path from rough context to useful context, while keeping durable truth protected.
-
-## The Problem
-
-As you use more AI tools, you end up paying the same tax over and over:
-
-- re-explaining your role
-- re-explaining your projects
-- re-explaining your preferences
-- re-explaining your constraints
-- re-explaining how you want outputs written
-
-That repetition wastes time, lowers quality, and creates memory lock-in inside individual products.
-
-## The Model
+## Memory Model
 
 This project uses a simple three-layer memory model:
 
@@ -71,78 +54,72 @@ This project uses a simple three-layer memory model:
 - `inbox/`
   Low-trust notes. Rough observations, partial ideas, and proposed core updates.
 
-This is the key design choice.
+This separation is the key design choice: stable truth, evolving memory, and uncertain notes should not collapse into one blob.
 
-The point is not just to “store context.”  
-The point is to separate stable truth from evolving memory and uncertain notes.
+## Tool Surface
 
-## Why This Is Different
+| Tool | Surface | Purpose |
+| --- | --- | --- |
+| `status` | read-only | Show memory health, writable surfaces, and available tools. |
+| `list_memory_files` | read-only | List portfolio files Claude can inspect. |
+| `read_memory_file` | read-only | Read one specific memory file. |
+| `search_memory` | read-only | Search files and sections with ranked matches and ranking reasons. |
+| `wake_up_context` | read-only | Build a compact, trust-aware context bundle for a task. |
+| `writing_style_context` | read-only | Pull writing-style context for drafting, rewriting, and editing tasks. |
+| `product_positioning_context` | read-only | Pull product and positioning context for strategy or messaging work. |
+| `outbound_framing_context` | read-only | Pull outbound framing context for prospecting and outreach work. |
+| `manual_ingest` | `inbox/` write | Capture pasted notes into low-trust memory with provenance. |
+| `append_memory_entry` | `dynamic/` write | Append a durable learning to an approved dynamic section. |
+| `maintain_dynamic_item` | `dynamic/` write | Replace or remove one exact bullet or dated entry. |
+| `replace_dynamic_section` | `dynamic/` write | Replace one approved dynamic section. |
+| `bootstrap_dynamic_memory` | `dynamic/` write | Bootstrap dynamic memory from reusable conversation evidence. |
+| `mark_raw_note_status` | `inbox/` write | Mark raw notes reviewed or promoted without deleting the source note. |
+| `promote_raw_note` | `dynamic/` or `inbox/` write | Promote one reviewed raw note into a learning or core-update proposal. |
+| `link_raw_note_to_proposal` | `inbox/` write | Link a raw note to an existing core-update proposal. |
+| `propose_core_update` | `inbox/` write | Propose protected core changes without editing `core/` directly. |
 
-Many personal context systems focus on storing user data or exposing one big context object.
+## Privacy Boundary
 
-This project is more opinionated:
+The starter portfolio in this repo is intentionally blank and safe to copy. Your filled personal context portfolio is private data.
 
-- Markdown-first, not schema-first
-- modular, not monolithic
-- designed for human review
-- designed for ongoing memory maintenance, not just initial setup
-- explicit separation between durable context, working memory, and tentative notes
+Do not commit your filled portfolio to a public repo. The default quickstart name, `my-personal-context-portfolio/`, is ignored by this repo, but if you choose another name, keep it outside Git or add it to your own `.gitignore` before filling it in.
 
-## What It Includes
+See [PRIVACY.md](./PRIVACY.md) for the privacy model.
 
-- a Claude Desktop unpacked extension
-- an MCP server built on the official MCP SDK
-- a starter personal context portfolio
-- a quickstart for installing and bootstrapping the system
+## Requirements
 
-## Repo Structure
-
-```text
-.
-├── desktop-extension/personal-context/
-├── mcp/
-├── starter-personal-context-portfolio/
-├── QUICKSTART.md
-└── package.json
-```
-
-## How It Works
-
-Once installed, Claude can:
-
-- list available memory files
-- read a specific file
-- search across memory files with ranked snippets and transparent relevance rationale
-- build a small trust-aware wake-up bundle for a task before starting work
-- capture pasted notes, transcript excerpts, or rough summaries into low-trust inbox memory with visible provenance
-- promote reviewed raw notes into reusable learnings or protected core-update proposals while keeping a visible source-note trail
-- mark raw notes as reviewed or promoted in place so inbox capture stays auditable instead of looking perpetually unresolved
-- link reviewed raw notes to an existing core-update proposal without creating a duplicate proposal entry
-- append durable learnings to working memory
-- replace or remove exact bullets and dated entries in dynamic memory without guessing
-- replace selected sections in dynamic files
-- bootstrap dynamic memory
-- propose updates to protected core files without editing them directly
+- Claude Desktop with local extensions enabled
+- Node.js 20 or newer
+- npm
 
 ## Install
 
 See [QUICKSTART.md](./QUICKSTART.md).
 
-Clone the repo:
-
 ```bash
 git clone https://github.com/abhinavkalyan10/personal-context-mcp.git
 cd personal-context-mcp
+npm install
+npm run install:extension
+npm run prepare:extension
 ```
 
-## Best Use Cases
+Then install `.build/claude-extension/personal-context` as an unpacked extension in Claude Desktop.
 
-This is most useful if you:
+## Repo Structure
 
-- use Claude frequently
-- switch between multiple AI workflows
-- want continuity across sessions
-- care about user-owned memory instead of product-owned memory
+```text
+.
+├── assets/
+├── desktop-extension/personal-context/
+├── lib/
+├── mcp/
+├── scripts/
+├── starter-personal-context-portfolio/
+├── tests/
+├── QUICKSTART.md
+└── package.json
+```
 
 ## What This Is Not
 
@@ -155,7 +132,14 @@ It does not replace:
 - periodic cleanup
 - manual review of durable truth
 
-It is a structured memory layer, not a substitute for thinking.
+It also does not add embeddings, a vector database, a knowledge graph, or automatic background writes.
+
+## Project Docs
+
+- [QUICKSTART.md](./QUICKSTART.md): install and validation walkthrough
+- [CHANGELOG.md](./CHANGELOG.md): release history
+- [PRIVACY.md](./PRIVACY.md): privacy model and data boundaries
+- [SECURITY.md](./SECURITY.md): security policy
 
 ## Suggested One-Line Description
 

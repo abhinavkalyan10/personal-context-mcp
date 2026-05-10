@@ -2,14 +2,22 @@
 
 This is the fastest path to getting `personal-context-mcp` running in Claude Desktop.
 
-## 1. Clone the repo
+## 1. Check requirements
+
+You need:
+
+- Claude Desktop with local extensions enabled
+- Node.js 20 or newer
+- npm
+
+## 2. Clone the repo
 
 ```bash
 git clone https://github.com/abhinavkalyan10/personal-context-mcp.git
 cd personal-context-mcp
 ```
 
-## 2. Install dependencies
+## 3. Install dependencies
 
 Install the root server dependencies:
 
@@ -29,7 +37,7 @@ Prepare a self-contained unpacked extension bundle:
 npm run prepare:extension
 ```
 
-## 3. Create your own portfolio
+## 4. Create your own portfolio
 
 Copy the starter template:
 
@@ -50,7 +58,7 @@ If outbound is part of your work, also fill in:
 
 - `my-personal-context-portfolio/core/outbound-playbook.md`
 
-## 4. Install the Claude Desktop extension
+## 5. Install the Claude Desktop extension
 
 In Claude Desktop:
 
@@ -58,7 +66,6 @@ In Claude Desktop:
 2. Click `Install Unpacked Extension`
 3. Select the `.build/claude-extension/personal-context` folder inside the repo you just cloned.
 4. When prompted for `Personal Context Folder`, choose `my-personal-context-portfolio` inside that same repo.
-
 5. Enable the extension
 6. Start a fresh chat
 
@@ -78,7 +85,7 @@ npm run sync:extension -- --target "/absolute/path/to/local.unpacked.your-extens
 
 The sync workflow keeps machine-specific paths out of the repo, reuses the shared server runtime, and leaves your chosen personal context folder untouched.
 
-## 5. Validate
+## 6. Validate
 
 Use these prompts:
 
@@ -92,9 +99,9 @@ Use these prompts:
 - `Use the personal-context extension to mark_raw_note_status as a dry run for one inbox/raw-notes.md entry, marking it reviewed or promoted without deleting it.`
 - `Use the personal-context extension to link_raw_note_to_proposal as a dry run so one inbox/raw-notes.md note clearly supports an existing inbox/core-update-proposals.md entry without creating a duplicate proposal.`
 
-These prompts exercise the `v0.2.0` surface: status/read tools, ranked search, wake-up context bundles, low-trust manual ingestion, and review/promotion flows.
+These prompts exercise the V2 surface: status/read tools, ranked search, wake-up context bundles, low-trust manual ingestion, and review/promotion flows.
 
-## 6. Bootstrap
+## 7. Bootstrap
 
 Use this prompt in a fresh Claude chat:
 
@@ -123,7 +130,7 @@ Be conservative:
 - Fewer high-quality entries are better than filling every file.
 ```
 
-## 7. Enrich Over Time
+## 8. Enrich Over Time
 
 The best operating model is:
 
@@ -136,3 +143,23 @@ The best operating model is:
 - use `maintain_dynamic_item` when one exact bullet or dated entry in `dynamic/` should be replaced or removed without rewriting the whole section
 - use `inbox/` for rough notes and uncertain ideas
 - review core update proposals manually
+
+## Troubleshooting
+
+If the extension does not appear in Claude Desktop, rerun:
+
+```bash
+npm run prepare:extension
+```
+
+Then reinstall the unpacked extension from `.build/claude-extension/personal-context` and start a fresh Claude chat.
+
+If a tool says it cannot find your portfolio, check that the extension setting points at the copied portfolio folder, not the starter template.
+
+If you refresh an already installed unpacked extension, use `npm run sync:extension` with the installed extension directory as the target. The sync command updates the extension runtime but does not modify your selected personal context folder.
+
+## Privacy Reminder
+
+The starter portfolio is blank and safe to copy. Your filled portfolio is private data. Keep it outside public Git history.
+
+See [PRIVACY.md](./PRIVACY.md) for the privacy model and [SECURITY.md](./SECURITY.md) for reporting security concerns.

@@ -1,18 +1,43 @@
 {
   "name": "personal-context-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
+  "description": "Markdown-first personal context memory for Claude Desktop through MCP.",
   "private": false,
   "license": "MIT",
+  "author": "Abhinav Kalyan",
   "type": "module",
+  "homepage": "https://github.com/abhinavkalyan10/personal-context-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhinavkalyan10/personal-context-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abhinavkalyan10/personal-context-mcp/issues"
+  },
+  "keywords": [
+    "claude",
+    "mcp",
+    "model-context-protocol",
+    "personal-context",
+    "memory",
+    "markdown",
+    "claude-desktop"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "files": [
     "assets",
+    "CHANGELOG.md",
     "desktop-extension/personal-context/manifest.json",
     "desktop-extension/personal-context/package-lock.json",
     "desktop-extension/personal-context/package.json",
     "desktop-extension/personal-context/server",
     "lib",
     "mcp",
+    "PRIVACY.md",
     "scripts",
+    "SECURITY.md",
     "starter-personal-context-portfolio",
     "QUICKSTART.md"
   ],
