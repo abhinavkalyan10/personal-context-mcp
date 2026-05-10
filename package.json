@@ -33,6 +33,7 @@
     "desktop-extension/personal-context/package-lock.json",
     "desktop-extension/personal-context/package.json",
     "desktop-extension/personal-context/server",
+    "docs",
     "lib",
     "mcp",
     "PRIVACY.md",

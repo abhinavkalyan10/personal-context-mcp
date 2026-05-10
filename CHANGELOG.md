@@ -4,6 +4,11 @@ All notable changes to this project are documented here.
 
 This project uses semantic versioning for public release tags.
 
+## Unreleased
+
+- Added a V2 demo walkthrough that shows the status, search, wake-up context, manual ingestion, and promotion loop.
+- Linked the walkthrough from the README and Quickstart.
+
 ## v0.2.1 - 2026-05-09
 
 Docs and release hardening for the V2 public surface.

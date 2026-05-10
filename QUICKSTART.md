@@ -101,6 +101,8 @@ Use these prompts:
 
 These prompts exercise the V2 surface: status/read tools, ranked search, wake-up context bundles, low-trust manual ingestion, and review/promotion flows.
 
+For a guided example of what good output looks like, see [docs/v2-demo-walkthrough.md](./docs/v2-demo-walkthrough.md).
+
 ## 7. Bootstrap
 
 Use this prompt in a fresh Claude chat:

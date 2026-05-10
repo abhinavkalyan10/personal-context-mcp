@@ -10,6 +10,8 @@ A Markdown-first MCP for Claude Desktop that makes AI memory portable, structure
 
 Instead of relying on opaque in-app memory, it stores context in files you control and exposes that context to Claude through an MCP extension.
 
+Want the product shape in five minutes? Read the [V2 demo walkthrough](./docs/v2-demo-walkthrough.md).
+
 ## Why Use It
 
 This is most useful if you:
@@ -42,6 +44,14 @@ The current V2 surface turns the project from a basic Markdown memory bridge int
 - **Manual ingestion:** `manual_ingest` captures pasted notes, transcript excerpts, and rough summaries into low-trust inbox memory with visible provenance.
 - **Review and promotion:** `promote_raw_note`, `mark_raw_note_status`, and `link_raw_note_to_proposal` let rough notes move toward reusable memory without erasing their trail.
 - **Safer dynamic maintenance:** dynamic files can be appended to, bootstrapped, or updated through exact section/item operations instead of broad rewrites.
+
+The upgrade is not just more tools. It is a tighter loop:
+
+1. Ask Claude what context exists.
+2. Search and rank the right Markdown sections.
+3. Build a task-specific read-first bundle.
+4. Capture rough notes into low-trust inbox memory.
+5. Promote only reviewed context into reusable working memory.
 
 ## Memory Model
 
@@ -137,6 +147,7 @@ It also does not add embeddings, a vector database, a knowledge graph, or automa
 ## Project Docs
 
 - [QUICKSTART.md](./QUICKSTART.md): install and validation walkthrough
+- [docs/v2-demo-walkthrough.md](./docs/v2-demo-walkthrough.md): short guided tour of the V2 workflow
 - [CHANGELOG.md](./CHANGELOG.md): release history
 - [PRIVACY.md](./PRIVACY.md): privacy model and data boundaries
 - [SECURITY.md](./SECURITY.md): security policy
