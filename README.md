@@ -2,13 +2,23 @@
 
 A Markdown-first MCP for Claude Desktop that makes AI memory portable, structured, and user-owned.
 
-`personal-context-mcp` helps Claude work with your own context without trapping that context inside one product's memory system.
+What if Claude could wake up inside a memory system you actually own?
+
+`personal-context-mcp` gives Claude a local folder of Markdown context: durable truths, live priorities, rough notes, and reviewable updates. Claude can search it, build a focused brief before work starts, and capture new observations without turning them into permanent truth by accident.
+
+Instead of trusting an opaque app memory, you get a small personal context layer you can inspect, edit, version, copy, and take with you.
+
+## The 10-Second Version
+
+Without this: every important chat starts with you re-explaining who you are, what matters, how you work, and what is currently going on.
+
+With this: Claude can run `wake_up_context`, read the right local Markdown sections first, and start the task with the context that matters.
 
 ## In Action
 
 ![Personal Context MCP in Claude Desktop](./assets/personal-context-mcp.gif)
 
-Instead of relying on opaque in-app memory, it stores context in files you control and exposes that context to Claude through an MCP extension.
+The cool part is the loop: search what matters, wake up with the right bundle, capture rough notes safely, then promote only the pieces that earn trust.
 
 Want the product shape in five minutes? Read the [V2 demo walkthrough](./docs/v2-demo-walkthrough.md).
 
@@ -34,6 +44,8 @@ This project is intentionally opinionated:
 
 The point is not "more memory." It is a more inspectable path from rough context to useful context, while keeping durable truth protected.
 
+That is the core bet: the best AI memory is not invisible. It is readable, local, and curated.
+
 ## V2 Surface
 
 The current V2 surface turns the project from a basic Markdown memory bridge into a fuller personal-context workflow:
@@ -49,7 +61,7 @@ The upgrade is not just more tools. It is a tighter loop:
 
 1. Ask Claude what context exists.
 2. Search and rank the right Markdown sections.
-3. Build a task-specific read-first bundle.
+3. Build a focused read-first bundle.
 4. Capture rough notes into low-trust inbox memory.
 5. Promote only reviewed context into reusable working memory.
 

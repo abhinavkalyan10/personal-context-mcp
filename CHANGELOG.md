@@ -8,6 +8,7 @@ This project uses semantic versioning for public release tags.
 
 - Added a V2 demo walkthrough that shows the status, search, wake-up context, manual ingestion, and promotion loop.
 - Linked the walkthrough from the README and Quickstart.
+- Sharpened the README opening around the user-owned memory pitch.
 
 ## v0.2.1 - 2026-05-09
 

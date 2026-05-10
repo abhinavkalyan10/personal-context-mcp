@@ -2,7 +2,7 @@
 
 This walkthrough shows the intended shape of Personal Context MCP after install. It uses the blank starter portfolio model, so the examples are intentionally generic and safe. Exact ranking and snippets will change as you fill in your own files.
 
-The important idea: Claude is not guessing from an opaque memory blob. It is reading and writing structured Markdown through explicit tools.
+The important idea: Claude is not guessing from an opaque memory blob. It is waking up through a context folder you can open, inspect, edit, and move anywhere.
 
 ## 1. Start With Status
 
@@ -79,7 +79,7 @@ Ranked context:
 4. core/communication-style.md -> Avoid
 ```
 
-Why it matters: Claude gets a small task-specific bundle instead of flooding the chat with every file.
+Why it matters: Claude gets a small focused bundle for the task instead of flooding the chat with every file.
 
 ## 4. Capture Rough Notes Safely
 
